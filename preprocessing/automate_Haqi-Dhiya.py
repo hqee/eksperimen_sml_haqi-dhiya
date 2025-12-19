@@ -39,6 +39,6 @@ def run_automation(input_file, output_file):
 
 if __name__ == "__main__":
     input_path = "diabetes.csv" 
-    output_path = "MLProject/diabetes_preprocessed.csv"
+    output_path = "preprocessing/diabetes_preprocessed.csv"
     
     run_automation(input_path, output_path)
