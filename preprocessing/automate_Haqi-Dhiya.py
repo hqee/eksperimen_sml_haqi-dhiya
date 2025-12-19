@@ -10,7 +10,7 @@ def run_automation(input_file, output_file):
 
     df = pd.read_csv(input_file)
     
-    # enangani Missing Values 
+    # Menangani Missing Values 
     cols_with_zeros = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI']
     df[cols_with_zeros] = df[cols_with_zeros].replace(0, np.nan)
     for col in cols_with_zeros:
@@ -30,15 +30,15 @@ def run_automation(input_file, output_file):
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     
-    # Menggabungkan Kembali dan Menyimpan Hasil
     df_final = pd.DataFrame(X_scaled, columns=X.columns)
     df_final['Outcome'] = y.values
     
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     df_final.to_csv(output_file, index=False)
-    print(f"Otomatisasi Berhasil! Data bersih disimpan di: {output_file}")
+    print(f"Otomatisasi Berhasil! Data disimpan di: {output_file}")
 
 if __name__ == "__main__":
-    input_path = "../diabetes.csv"
-    output_path = "diabetes_preprocessed.csv"
+    input_path = "diabetes.csv" 
+    output_path = "MLProject/diabetes_preprocessed.csv"
     
     run_automation(input_path, output_path)
